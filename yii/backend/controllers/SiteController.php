@@ -175,7 +175,7 @@ class SiteController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return $result;
         }else{
-            throw new BadRequestHttpException('Only POST is allowe');
+            throw new BadRequestHttpException('Only POST is allowed');
         }
         
     }

@@ -44,7 +44,8 @@ class ImageManager extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'class' => 'Class',
-            'item_id' => 'Item ID'
+            'item_id' => 'Item ID',
+            'alt' => 'Alt'
         ];
     }
 }

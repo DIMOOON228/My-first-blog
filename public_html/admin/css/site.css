@@ -111,3 +111,11 @@ a.desc:after {
 .blog-view td>img {
     max-width: 100px;
 }
+
+.form-control.file-caption-name {
+    max-width: 80%;
+}
+
+body {
+    font-size: 14px !important;
+}

@@ -77,7 +77,8 @@ use kartik\file\FileInput;
     <?= FileInput::widget([
         'name' => 'ImageManager[attachment]',
         'options'=>[
-            'multiple'=>true
+            'multiple'=>true,
+            'class'=>'123'
         ],
         'pluginOptions' => [
             'uploadUrl' => Url::to(['/site/save-img']),

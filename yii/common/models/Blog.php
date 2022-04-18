@@ -1,7 +1,6 @@
 <?php
 
 namespace common\models;
-use yii\image\ImageDriver;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -59,8 +58,7 @@ class Blog extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'date_create',
                 'updatedAtAttribute' => 'date_update',
                 'value' => new Expression('NOW()'),
-            ]
-            ,
+            ],
         ];
     }
     /**
@@ -84,6 +82,7 @@ class Blog extends \yii\db\ActiveRecord
             'date_create'=>'Дата создания',
             'image'=>'Картинка',
             'file'=>'Картинка',
+            'smallImage' =>'Аватарка',
         ];
     }
     public static function getStatusList(){
@@ -93,7 +92,22 @@ class Blog extends \yii\db\ActiveRecord
         $list = self::getStatusList();
         return $list[$this->status_id];
     }
-
+    public function getImages(){
+        return $this->hasMany(ImageManager::className(),['item_id'=>'id'])->where(['class'=>self::tableName()])->orderBy('sort');
+    }
+    public function getImagesLinks(){
+        return ArrayHelper::getColumn($this->images,'imageUrl');
+    }
+    public function getImagesLinksData(){
+            $arr = ArrayHelper::toArray($this->images,[
+                ImageManager::className()=>[
+                    'caption'=>'name',
+                    'key'=>'id'
+                     ]
+                ]
+            );
+            return $arr;
+    }
     public function getAuthor(){
         return $this->hasOne(User::className(),['id'=>'user_id']);
     }

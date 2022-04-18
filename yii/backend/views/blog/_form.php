@@ -81,12 +81,22 @@ use kartik\file\FileInput;
             'class'=>'123'
         ],
         'pluginOptions' => [
-            'uploadUrl' => Url::to(['/site/save-img']),
-            'uploadExtraData' => [
+                'deleteUrl'=>Url::toRoute(['/blog/delete-image']),
+                'initialPreview'=>$model->imagesLinks,
+                'initialPreviewAsData'=>true,
+                'overwriteInitial'=>false,
+                'initialPreviewConfig'=>$model->imagesLinksData,
+                'uploadUrl' => Url::to(['/site/save-img']),
+                'uploadExtraData' => [
                 'ImageManager[class]' =>$model->formName(),
                 'ImageManager[item_id]' => $model->id
             ],
-            'maxFileCount' => 10
+            'maxFileCount' =>15
+        ],
+        'pluginEvents'=>[
+                'filesorted'=>new \yii\web\JsExpression('function( event, params){
+                    $.post("'.Url::toRoute(["/blog/sort-image","id"=>$model->id]).'",{sort: params});
+                }')
         ]
     ]);
     ?>

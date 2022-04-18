@@ -130,7 +130,7 @@ class SiteController extends Controller
                 $imag = Yii::$app->image->load($dir.$model->file->name);
                  $imag->resize(800, NULL,Yii\image\drivers\Image::INVERSE)
                  ->save($dir.$model->file->name, 85);
-                    $result = ['filelink'=>$result_link . $model->file->name, 'filename'=>$model->file->name];
+                    $result = ['filelink'=>$result_link.$model->file->name, 'filename'=>$model->file->name];
                 }else{
                     $result = ['error'=>Yii::t('vova07/imperavi','ERROR_CAN_NOT_UPLOAD_FILE')];
                 }

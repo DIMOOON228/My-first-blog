@@ -58,5 +58,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'smallImage:image'
         ],
     ]) ?>
+    <?php
+    $fotorama = \metalguardian\fotorama\Fotorama::begin(
+        [
+            'options' => [
+                'loop' => true,
+                'hash' => true,
+                'ratio' => 800/600,
+            ],
+            'spinner' => [
+                'lines' => 20,
+            ],
+            'tagName' => 'span',
+            'useHtmlData' => false,
+            'htmlOptions' => [
+                'class' => 'custom-class',
+                'id' => 'custom-id',
+            ],
+        ]
+    );
 
+    foreach($model->images as $one){
+       echo  Html::img($one->imageUrl,['alt'=>$one->alt]);
+    }
+     \metalguardian\fotorama\Fotorama::end(); ?>
 </div>

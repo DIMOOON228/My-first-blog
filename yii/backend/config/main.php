@@ -26,6 +26,9 @@ return [
         'debug'=>[
             'class'=>'yii\debug\Module'
         ],
+        'blog' => [
+            'class' => 'common\modules\blog\Blog',
+        ],
     ],
     'components' => [
         'request' => [

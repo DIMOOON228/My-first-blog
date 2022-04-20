@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "time".
  *
@@ -43,5 +43,8 @@ class Time extends \yii\db\ActiveRecord
             'data' => 'Data',
             'datatime' => 'Datatime',
         ];
+    }
+    public static function getSpisok(){
+        return ArrayHelper::map(self::find()->all(),'id','data');
     }
 }

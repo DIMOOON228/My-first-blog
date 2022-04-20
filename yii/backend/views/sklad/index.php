@@ -6,18 +6,18 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\TimeSearch */
+/* @var $searchModel common\models\SkladSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Times';
+$this->title = 'Sklads';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="time-index">
+<div class="sklad-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Time', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Sklad', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -30,12 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'time',
-            'data',
-            'datatime',
+            'title',
+            'address',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, \common\models\Time $model, $key, $index, $column) {
+                'urlCreator' => function ($action, \common\models\Sklad $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

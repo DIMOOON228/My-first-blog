@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Time */
+/* @var $model common\models\Sklad */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Times', 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Sklads', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="time-view">
+<div class="sklad-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,9 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'time',
-            'data:date',
-            'datatime:datetime',
+            'title',
+            'address',
         ],
     ]) ?>
 

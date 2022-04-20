@@ -1,20 +1,17 @@
 <?php
 
-namespace common\modules\blog\controllers;
+namespace backend\controllers;
 
-
-use common\modules\blog\models\BlogSearch;
-use common\models\ImageManager;
-use Yii;
+use common\models\Tag;
+use common\models\TagSearch;
 use yii\web\Controller;
-use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BlogController implements the CRUD actions for Blog model.
+ * TagController implements the CRUD actions for Tag model.
  */
-class BlogController extends Controller
+class TagController extends Controller
 {
     /**
      * @inheritDoc
@@ -28,8 +25,6 @@ class BlogController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
-                        'delete-image' => ['POST'],
-                        'sort-image' => ['POST'],
                     ],
                 ],
             ]
@@ -37,13 +32,13 @@ class BlogController extends Controller
     }
 
     /**
-     * Lists all Blog models.
+     * Lists all Tag models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new BlogSearch();
+        $searchModel = new TagSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -51,21 +46,9 @@ class BlogController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-    // public function actionDima()
-    // {
-    //     for($i=0;$i<30;$i++){
-    //         $model = new Blog();
-    //         $model->title = 'Заголовок №'.$i;
-    //         $model->sort = 50;
-    //         $model->status_id = 1;
-    //         $model->url = 'url_'.$i;
-    //         $model->save();
-    //     }
-    //     return 'Я все сделал';
-    // }
 
     /**
-     * Displays a single Blog model.
+     * Displays a single Tag model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -78,13 +61,13 @@ class BlogController extends Controller
     }
 
     /**
-     * Creates a new Blog model.
+     * Creates a new Tag model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new \common\modules\blog\models\Blog();
+        $model = new Tag();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -100,7 +83,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Updates an existing Blog model.
+     * Updates an existing Tag model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -120,7 +103,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Deletes an existing Blog model.
+     * Deletes an existing Tag model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -134,43 +117,18 @@ class BlogController extends Controller
     }
 
     /**
-     * Finds the Blog model based on its primary key value.
+     * Finds the Tag model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Blog the loaded model
+     * @return Tag the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = \common\modules\blog\models\Blog::find()->with('tags')->where(['id' => $id])->one()) !== null) {
+        if (($model = Tag::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    public function actionDeleteImage(){
-        if (($model = ImageManager::findOne(Yii::$app->request->post('key')))and $model->delete()) {
-            return true;
-        }else{
-                throw new NotFoundHttpException('The requested page does not exist.');
-            }
-        }
-    public function actionSortImage($id){
-        if(Yii::$app->request->isAjax){
-            $post = Yii::$app->request->post('sort');
-            if($post['oldIndex'] >  $post['newIndex']){
-                $param = ['and',['>=','sort',$post['newIndex']],['<','sort',$post['oldIndex']]];
-                $counter = 1;
-            }else{
-                $param = ['and',['<=','sort',$post['newIndex']],['>','sort',$post['oldIndex']]];
-                $counter = -1;
-            }
-            ImageManager::updateAllCounters(['sort'=>$counter],['and',['class'=>'blog','item_id'=>$id],$param]);
-            ImageManager::updateAll(['sort'=>$post['newIndex']],['id'=>$post['stack'[$post['newIndex']]]['key']]);
-            return true;
-        }
-        throw new MethodNotAllowedHttpException();
-    }
-    }
-
-
+}

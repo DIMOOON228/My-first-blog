@@ -1,23 +1,25 @@
 <?php
 
-namespace common\modules\blog\models;
+namespace common\models;
 
 use Yii;
 
 /**
- * This is the model class for table "tag".
+ * This is the model class for table "time".
  *
  * @property int $id
- * @property string $name
+ * @property string|null $time
+ * @property string|null $data
+ * @property string|null $datatime
  */
-class Tag extends \yii\db\ActiveRecord
+class Time extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'tag';
+        return 'time';
     }
 
     /**
@@ -26,8 +28,7 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 50],
+            [['time', 'data', 'datatime'], 'safe'],
         ];
     }
 
@@ -38,7 +39,9 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'time' => 'Time',
+            'data' => 'Data',
+            'datatime' => 'Datatime',
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace common\modules\blog\models;
+namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\modules\blog\models\Blog;
+use common\models\Blog;
 
 /**
  * BlogSearch represents the model behind the search form of `common\models\Blog`.

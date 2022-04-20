@@ -1,6 +1,6 @@
 <?php
 
-use common\modules\blog\models\Blog;
+use common\models\Blog;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 

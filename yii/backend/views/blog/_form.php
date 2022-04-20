@@ -1,7 +1,7 @@
 <?php
 
-use common\modules\blog\models\Blog;
-use common\modules\blog\models\Tag;
+use common\models\Blog;
+use common\models\Tag;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

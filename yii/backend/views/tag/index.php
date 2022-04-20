@@ -1,6 +1,6 @@
 <?php
 
-use common\modules\blog\models\Tag;
+use common\models\Tag;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;

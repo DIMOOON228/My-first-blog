@@ -26,9 +26,6 @@ return [
         'debug'=>[
             'class'=>'yii\debug\Module'
         ],
-        'blog' => [
-            'class' => 'common\modules\blog\Blog',
-        ],
     ],
     'components' => [
         'request' => [
@@ -62,7 +59,14 @@ return [
             'rules' => [
             ],
         ],
-      
+        'formatter'=>[
+            'class'=>'yii\i18n\Formatter',
+            'decimalSeparator'=>',',
+            'thousandSeparator'=>',',
+            'currencyCode'=>'EUR',
+            'dateFormat'=>'php: d/m/Y',
+            'datetimeFormat'=>'php: d/m/Y H:i',
+        ],
     ],
     'params' => $params,
 ];

@@ -1,17 +1,17 @@
 <?php
 
-namespace common\modules\blog\controllers;
+namespace backend\controllers;
 
-use common\modules\blog\models\Tag;
-use common\modules\blog\models\TagSearch;
+use common\models\Time;
+use common\models\TimeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TagController implements the CRUD actions for Tag model.
+ * TimeController implements the CRUD actions for Time model.
  */
-class TagController extends Controller
+class TimeController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class TagController extends Controller
     }
 
     /**
-     * Lists all Tag models.
+     * Lists all Time models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new TagSearch();
+        $searchModel = new TimeSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class TagController extends Controller
     }
 
     /**
-     * Displays a single Tag model.
+     * Displays a single Time model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class TagController extends Controller
     }
 
     /**
-     * Creates a new Tag model.
+     * Creates a new Time model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Tag();
+        $model = new Time();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class TagController extends Controller
     }
 
     /**
-     * Updates an existing Tag model.
+     * Updates an existing Time model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class TagController extends Controller
     }
 
     /**
-     * Deletes an existing Tag model.
+     * Deletes an existing Time model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class TagController extends Controller
     }
 
     /**
-     * Finds the Tag model based on its primary key value.
+     * Finds the Time model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Tag the loaded model
+     * @return Time the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tag::findOne(['id' => $id])) !== null) {
+        if (($model = Time::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

@@ -23,7 +23,11 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "yurkinx/yii2-image": "^1.2",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "metalguardian/yii2-fotorama-widget": "^1.0"
+        "metalguardian/yii2-fotorama-widget": "^1.0",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "kartik-v/yii2-widget-timepicker": "dev-master",
+        "kartik-v/yii2-widget-datetimepicker": "dev-master"
 
     },
     "require-dev": {

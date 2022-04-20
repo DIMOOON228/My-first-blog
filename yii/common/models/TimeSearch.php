@@ -1,15 +1,15 @@
 <?php
 
-namespace common\modules\blog\models;
+namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\modules\blog\models\Tag;
+use common\models\Time;
 
 /**
- * TagSearch represents the model behind the search form of `common\models\Tag`.
+ * TimeSearch represents the model behind the search form of `common\models\Time`.
  */
-class TagSearch extends Tag
+class TimeSearch extends Time
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class TagSearch extends Tag
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['time', 'data', 'datatime'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class TagSearch extends Tag
      */
     public function search($params)
     {
-        $query = Tag::find();
+        $query = Time::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +59,10 @@ class TagSearch extends Tag
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'time' => $this->time,
+            'data' => $this->data,
+            'datatime' => $this->datatime,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

@@ -36,13 +36,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'skladName',
                 'filter'=>Sklad::getList()
             ],
-
+            [
+                    'attribute'=>'sklad_name',
+                    'value'=>'skladName'
+            ],
             'title',
+            'cost',
             [
                     'attribute'=>'data',
-                    'value'=>''
-            ],
-            'cost',
+                    'format'=>'date',
+                    'value'=>'date',
+                    'filter'=>\kartik\datecontrol\DateControl::widget([
+                            'model'=>$searchModel,
+                            'attribute'=>'data'
+])
+
+],
             ['attribute'=>'type_id',
                 'value'=>'typeName',
                 'filter'=>\common\models\Product::getTypeList()

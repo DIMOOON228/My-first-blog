@@ -30,7 +30,7 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'My-firts-blog', 'options' => ['class' => 'header']],
                     ['label' => 'Блог', 'icon' => 'pencil', 'url' => ['/blog/index']],
                     ['label' => 'Тэги', 'icon' => 'tags', 'url' => ['/tag/index']],
                     ['label' => 'Product', 'icon' => 'smile-o', 'url' => ['/product/index']],

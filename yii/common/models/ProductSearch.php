@@ -18,7 +18,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'cost', 'type_id','sklad_id'], 'integer'],
-            [['title', 'text','sklad_name'], 'safe'],
+            [['title', 'text','sklad_name','data'], 'safe'],
         ];
     }
 
@@ -31,6 +31,8 @@ class ProductSearch extends Product
         return Model::scenarios();
     }
     public $sklad_name;
+    public $data;
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -46,8 +48,18 @@ class ProductSearch extends Product
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-        ]);
 
+        ]);
+        $dataProvider->setSort([
+           'attributes'=>array_merge($dataProvider->getSort()->attributes,[
+               'sklad_name'=>[
+                   'asc' => ['sklad.title' => SORT_ASC],
+                   'desc' => ['sklad.title' => SORT_DESC],
+                   'default'=>SORT_ASC,
+                   'lable'=>'Sklad name',
+               ]
+           ])
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -66,7 +78,9 @@ class ProductSearch extends Product
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
+            ->andFilterWhere(['>', 'data', $this->data])
             ->andFilterWhere(['like', 'sklad.title', $this->sklad_name]);
+
         return $dataProvider;
     }
 }

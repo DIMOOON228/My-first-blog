@@ -4,9 +4,11 @@ namespace backend\controllers;
 
 use common\models\Product;
 use common\models\ProductSearch;
+use common\rules\AuthorRule;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -130,5 +132,45 @@ class ProductController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    public function actionRole(){
+//        $auth = Yii::$app->AuthManager;
+//        $rule = new AuthorRule();
+//        $auth->add($rule);
+//        $admin = Yii::$app->authManager->createRole('admin');
+//        $admin->description = 'Администратор';
+//        Yii::$app->authManager->add($admin);
+//
+//        $content = Yii::$app->authManager->createRole('content');
+//        $content->description = 'Контент менеджер';
+//        Yii::$app->authManager->add($content);
+//
+//        $user = Yii::$app->authManager->createRole('user');
+//        $user->description = 'Пользователь';
+//        Yii::$app->authManager->add($user);
+//
+//        $ban = Yii::$app->authManager->createRole('banned');
+//        $ban->description = 'Паскуда';
+//        Yii::$app->authManager->add($ban);
+//
+//        $permit = Yii::$app->authManager->createPermission('updatePost');
+//        $permit->description = 'Редактировать Post';
+//        Yii::$app->authManager->add($permit);
+//
+//        $role_a = Yii::$app->authManager->getRole('content');
+//        $permit = Yii::$app->authManager->getPermission('updatePost');
+//        Yii::$app->authManager->addChild($role_a, $permit);
+
+//        $userRole = Yii::$app->authManager->getRole('content');
+//        Yii::$app->authManager->assign($userRole, 9);
+//        $auth = Yii::$app->authManager;
+//        $rule = new AuthorRule();
+//        $auth->add($rule);
+//        $updateOwnPost = $auth->createPermission('updateOwnPost');
+//        $updateOwnPost->description = 'Редактировать посты';
+//        $updateOwnPost->ruleName = $rule->name;
+//        $auth->add($updateOwnPost);
+
+        return 'Я все сделал как ты хотел';
     }
 }

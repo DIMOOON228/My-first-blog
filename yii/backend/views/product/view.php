@@ -14,17 +14,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="product-view">
 
 
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <h1><?= Yii::$app->user->id  ?>(<?= Yii::$app->user->identity->username ?>)</h1>
+    <?php  if(Yii::$app->user->can('updatePost',['author_id'=>$model->user_id])): ?>
+        <p>
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+    <?php  endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -33,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'cost',
             'type_id',
+            'data:date',
             'text:ntext',
             'sklad_id',
         ],

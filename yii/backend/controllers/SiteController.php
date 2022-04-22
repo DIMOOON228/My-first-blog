@@ -35,9 +35,14 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','save-redactor-img','save-img'],
+                        'actions' => ['logout','save-redactor-img','save-img'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['canAdmin'],
                     ],
                 ],
             ],
